@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Weather and Time</title>
+        <link rel="stylesheet" href="css/uikit.min.css" />
+        <script src="js/jquery-1.11.1.min.js"></script>
+        <script src="js/uikit.min.js"></script>
+		
+		<script type="text/javascript" language="javascript">
+		
+		$(document).ready(function() {
+		$("#btnRefresh").click(function(event){
+		$.getJSON('http://api.openweathermap.org/data/2.5/weather?q=eindhoven,nl', function(jd) {
+		 $('#weatherPanel').html(
+		 '<p>Condition: ' + 
+		 jd.weather[0].main + 
+		 '<br />Description: ' + jd.weather[0].description + 
+		 '<br />Current Temparature: ' + (parseInt(jd.main.temp)-273.15).toFixed(0).toString() + 
+		 '<br />Max Temparature: ' + (parseInt(jd.main.temp_max)-273.15).toFixed(0).toString() + 
+		 '<br />Min Temparature: ' + (parseInt(jd.main.temp_min)-273.15).toFixed(0).toString() + 
+		 '<br />Humidity: ' + jd.main.humidity +
+		 '<br />Updated at: ' + Date() +
+		 '</p>'
+		 );
+		});
+		});
+		});
+		</script>
+   
+    </head>
+<body>
+   <div class="uk-panel uk-panel-box uk-align-center uk-text-center uk-margin-left uk-margin-right uk-margin-top uk-margin-bottom">
+    <h1 class="uk-panel-title uk-heading-large">Eindhoven Weather</h1>
+    <div id="weatherPanel"></div>
+	</div>
+   <button id="btnRefresh" class="uk-button uk-button-primary uk-align-center" type="button">Refresh</button>
+</body>
+</html>
