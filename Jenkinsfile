@@ -1,12 +1,7 @@
 pipeline {
-  agent {
-    docker {
-      image 'test'
-    }
-    
-  }
+  agent any
   stages {
-    stage('') {
+    stage('infostage') {
       steps {
         echo 'Hello'
       }
